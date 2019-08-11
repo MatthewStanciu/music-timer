@@ -10,21 +10,9 @@ spotify.setClientSecret(process.env.CLIENT_SECRET)
 function refreshToken() {
   return new Promise((res, rej) => {
     spotify.refreshAccessToken().then(data => {
-      spotify.setAccessToken(data.body['access_token'])
       res(data.body['access_token'])
     })
   })
-}
-
-const headers = {
-  Accept: `application/json`,
-  'Content-Type': 'application/json',
-  Authorization: `Bearer ${spotify.getAccessToken()}`
-}
-
-const options = {
-  url: 'https://api.spotify.com/v1/me/player/currently-playing?market=US',
-  headers: headers
 }
 
 export default (req, res) => {
