@@ -4,16 +4,7 @@ const Page = ({ artist, title, albumCover }) => (
   <main>
     <h1>Artist: {artist}</h1>
     <h1>Song Title: {title}</h1>
-    <img src={albumCover} />
-
-    <style jsx>
-      {`
-        img {
-          width: 256px;
-          height: 256px;
-        }
-      `}
-    </style>
+    <img src={albumCover} style={{ height: '256px', width: '256px' }} />
   </main>
 )
 
