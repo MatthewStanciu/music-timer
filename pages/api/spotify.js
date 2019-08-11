@@ -34,6 +34,7 @@ export default (req, res) => {
         const artist = json['item']['artists'][0]['name']
         const title = json['item']['name']
         const albumCover = json['item']['album']['images'][0]['url']
+
         res.json({ artist, title, albumCover })
       })
     )
