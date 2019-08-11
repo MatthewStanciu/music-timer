@@ -28,12 +28,10 @@ export default (req, res) => {
           Authorization: `Bearer ${accessToken}`
         }
       }).then(data => {
-        console.log(data)
         const json = JSON.parse(data)
+
         const artist = json['item']['artists'][0]['name']
         const title = json['item']['name']
-        console.log(artist)
-        console.log(title)
         res.json({ artist, title })
       })
     )
