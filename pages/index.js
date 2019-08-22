@@ -69,8 +69,8 @@ const Page = () => {
           <img
             className="music-cover"
             src={song.albumCover}
-            width={256}
-            height={256}
+            width={384}
+            height={384}
           />
           <h1 className="music-title">{song.title}</h1>
           <h2 className="music-artist">{song.artist}</h2>
@@ -121,12 +121,12 @@ const Page = () => {
           font-variant-numeric: tabular-nums;
         }
         .clock.is-active {
-          text-shadow: 0 0 8px white;
         }
         .clock.is-inactive {
           opacity: 0.75;
         }
         .music {
+          margin-left: 2rem;
         }
         .music-cover {
           border-radius: 8px;
