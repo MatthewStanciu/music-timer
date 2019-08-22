@@ -50,6 +50,7 @@ const Page = () => {
   // display 00 instead of 0
   clock.forEach((value, i) => {
     clock[i] = value === 0 ? '00' : value
+    clock[i] = value < 10 ? `0${value}` : value
   })
 
   return (
