@@ -49,8 +49,8 @@ const Page = () => {
   const clock = [Math.floor(seconds / 60), seconds % 60]
   // display 00 instead of 0
   clock.forEach((value, i) => {
-    clock[i] = value === 0 ? '00' : value
-    clock[i] = value < 10 ? `0${value}` : value
+    clock[i] = value < 10 && value >= 0 && i === 1 ? `0${value}` : value
+    if (clock[0] === 0 && clock[1] === 0) clock[i] = '00'
   })
 
   return (
