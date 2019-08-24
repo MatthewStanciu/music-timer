@@ -30,8 +30,9 @@ const Page = () => {
 
   useEffect(() => {
     let timerInterval = null
-    // fetch song every 5 seconds
-    let songInterval = setInterval(() => fetchSong(), 5000)
+    // fetch song every second
+    let songInterval = setInterval(() => fetchSong(), 1000)
+
     if (active) {
       timerInterval = setInterval(() => {
         // decrement as long as the clock isn’t at 0 already

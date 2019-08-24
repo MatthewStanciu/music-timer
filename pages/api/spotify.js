@@ -28,7 +28,7 @@ export default (req, res) => {
           Authorization: `Bearer ${accessToken}`
         }
       }).then(data => {
-        console.log('Retrieved currently playing song!', data)
+        console.log('Retrieved currently playing song!')
         const json = JSON.parse(data)
 
         const title = json['item']['name']
