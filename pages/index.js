@@ -6,6 +6,7 @@ const Page = () => {
   const [song, setSong] = useState({})
   const [seconds, setSeconds] = useState(0)
   const [active, setActive] = useState(false)
+  const [clock, setClock] = useState([null, null])
 
   const fetchSong = async () => {
     const req = await fetch('/api/spotify')
@@ -30,6 +31,7 @@ const Page = () => {
 
   useEffect(() => {
     let timerInterval = null
+    let updateInterval = null
     // fetch song every second
     let songInterval = setInterval(() => fetchSong(), 1000)
 
@@ -38,21 +40,26 @@ const Page = () => {
         // decrement as long as the clock isn’t at 0 already
         setSeconds(seconds => (seconds === 0 ? 0 : seconds - 1))
       }, 1000)
+
+      updateInterval = setInterval(() => {
+        let clock = [Math.floor(seconds / 60), seconds % 60]
+        // display 00 instead of 0
+        clock.forEach((value, i) => {
+          clock[i] = value < 10 && value >= 0 && i === 1 ? `0${value}` : value
+          if (clock[0] === 0 && clock[1] === 0) clock[i] = '00'
+        })
+        setClock(clock)
+      }, 50)
     } else if (!active && seconds !== 0) {
       clearInterval(timerInterval)
+      clearInterval(updateInterval)
     }
     return () => {
       clearInterval(songInterval)
       clearInterval(timerInterval)
+      clearInterval(updateInterval)
     }
   }, [active, seconds])
-
-  const clock = [Math.floor(seconds / 60), seconds % 60]
-  // display 00 instead of 0
-  clock.forEach((value, i) => {
-    clock[i] = value < 10 && value >= 0 && i === 1 ? `0${value}` : value
-    if (clock[0] === 0 && clock[1] === 0) clock[i] = '00'
-  })
 
   return (
     <main>
@@ -64,7 +71,7 @@ const Page = () => {
             onDoubleClick={onSetTimer}
             onClick={toggle}
           >
-            {clock[0]}:{clock[1]}
+            {clock[0] ? clock[0] : '00'}:{clock[1] ? clock[1] : '00'}
           </div>
         </div>
         <div className="music">
