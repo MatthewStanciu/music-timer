@@ -7,19 +7,17 @@ spotify.setRefreshToken(process.env.REFRESH_TOKEN)
 spotify.setClientId(process.env.CLIENT_ID)
 spotify.setClientSecret(process.env.CLIENT_SECRET)
 
-function refreshToken() {
-  return new Promise((res, rej) => {
+const refreshToken = () => (
+  new Promise((res, rej) => {
     spotify.refreshAccessToken().then(data => {
       res(data.body['access_token'])
     })
   })
-}
+)
 
-export default (req, res) => {
-  async function fetchData() {
-    var accessToken = await refreshToken()
+export default async (req, res) => {
+  const accessToken = await refreshToken()
 
-    refreshToken().then(
       request({
         url: 'https://api.spotify.com/v1/me/player/currently-playing?market=US',
         headers: {
@@ -47,7 +45,4 @@ export default (req, res) => {
           })
         })
     )
-  }
-
-  fetchData()
 }
