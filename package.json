@@ -16,9 +16,11 @@
     "lodash": "^4.17.15",
     "next": "^9.0.4",
     "query-string": "^6.8.2",
+    "querystring": "^0.2.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "rebass": "^4.0.5",
+    "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "spotify-web-api-node": "^4.0.0"
   }
