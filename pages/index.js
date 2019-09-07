@@ -7,17 +7,7 @@ const redirect_uri = 'http://localhost:3000/auth'
 
 const LoginPage = ({ client_id, client_secret, login_url }) => (
   <div>
-    <Link
-      href={
-        'https://accounts.spotify.com/authorize?' +
-        querystring.stringify({
-          response_type: 'code',
-          client_id: client_id,
-          scope: 'user-read-private user-read-email',
-          redirect_uri: 'http://localhost:3000/auth'
-        })
-      }
-    >
+    <Link href={login_url}>
       <a className="no-underline bg-green hover:bg-green-light text-white font-bold py-2 px-4 border-b-4 border-green-dark hover:border-green rounded">
         LOG IN
       </a>
