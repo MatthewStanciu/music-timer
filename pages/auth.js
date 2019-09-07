@@ -47,9 +47,7 @@ Auth.getInitialProps = async ({ req, res }) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ refresh_token: refreshToken })
-  })
-    .then(r => console.log('success'))
-    .catch(err => console.log(err))
+  }).catch(err => console.log(err))
 
   res.writeHead(302, {
     Location: `http://localhost:3000/app`

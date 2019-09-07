@@ -19,10 +19,7 @@ const exchangeTokens = async () => {
 export default async (req, res) => {
   const accessToken = await exchangeTokens()
 
-  if (req.method === 'POST') {
-    console.log(req.body.refresh_token)
-    spotify.setRefreshToken(req.body.refresh_token)
-  }
+  if (req.method === 'POST') spotify.setRefreshToken(req.body.refresh_token)
 
   request({
     url: 'https://api.spotify.com/v1/me/player/currently-playing?market=US',
