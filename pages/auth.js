@@ -28,20 +28,12 @@ export default class extends React.Component {
             'base64'
           )
       }
-        .then(response => {
-          //console.log(`access token: ${response.data.access_token}`)
-          //console.log(`refresh token: ${response.data.refresh_token}`)
-
-          axios({
-            method: 'POST',
-            url: `http://localhost:3000/api/spotify`,
-            body: {
-              accessToken: response.data.access_token
-            }
-          })
-        })
-        .catch(err => console.log(err))
     })
+      .then(response => {
+        console.log(`access token: ${response.data.access_token}`)
+        // get the access token oUT OF HERE!!!
+      })
+      .catch(err => console.log(err))
 
     res.writeHead(302, {
       Location: `http://localhost:3000/app`
