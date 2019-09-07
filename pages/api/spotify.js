@@ -8,7 +8,7 @@ spotify.setRefreshToken(process.env.REFRESH_TOKEN)
 spotify.setClientId(process.env.CLIENT_ID)
 spotify.setClientSecret(process.env.CLIENT_SECRET)
 
-const refreshToken = async () => {
+const exchangeTokens = async () => {
   return new Promise((res, rej) => {
     spotify.refreshAccessToken().then(data => {
       res(data.body['access_token'])
@@ -17,7 +17,7 @@ const refreshToken = async () => {
 }
 
 export default async (req, res) => {
-  const accessToken = await refreshToken()
+  const accessToken = await exchangeTokens()
 
   if (req.method === 'POST') {
     console.log(req.body.refresh_token)
