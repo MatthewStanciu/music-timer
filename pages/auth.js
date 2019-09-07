@@ -12,7 +12,7 @@ export default class extends React.Component {
     const code = req.url.match('=(.*)')[1]
     data.code = code
 
-    const getAccessToken = async () => {
+    const getRefreshToken = async () => {
       let tokenPromise = new Promise((resolve, reject) => {
         axios({
           method: 'POST',
@@ -34,17 +34,16 @@ export default class extends React.Component {
           .then(response => {
             //console.log(`access token: ${response.data.access_token}`)
             // get the access token oUT OF HERE!!!
-            resolve(response.data.access_token)
+            resolve(response.data.refresh_token)
           })
           .catch(err => console.log(err))
       })
       return tokenPromise
     }
 
-    const token = await getAccessToken()
-    console.log(token)
+    const refreshToken = await getRefreshToken()
     res.writeHead(302, {
-      Location: `http://localhost:3000/app?access_token=${token}`
+      Location: `http://localhost:3000/app?refresh_token=${refreshToken}`
     })
     res.end()
 

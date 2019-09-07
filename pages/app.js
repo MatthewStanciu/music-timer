@@ -156,4 +156,10 @@ const Page = () => {
   )
 }
 
+/*Page.getInitialProps = ({ req }) => {
+  fetch((req ? `http://${req.headers.host}` : '') + '/api/spotify').then(res =>
+    res.json()
+  )
+}*/
+
 export default Page
