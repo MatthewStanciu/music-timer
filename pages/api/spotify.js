@@ -1,7 +1,8 @@
 require('dotenv').config()
-const Spotify = require('spotify-web-api-node')
-const request = require('request-promise')
+import request from 'request-promise'
+import { parse } from 'query-string'
 
+const Spotify = require('spotify-web-api-node')
 const spotify = new Spotify()
 spotify.setRefreshToken(process.env.REFRESH_TOKEN)
 spotify.setClientId(process.env.CLIENT_ID)
@@ -17,6 +18,8 @@ function refreshToken() {
 
 export default async (req, res) => {
   const accessToken = await refreshToken()
+
+  console.log(res.json())
 
   request({
     url: 'https://api.spotify.com/v1/me/player/currently-playing?market=US',

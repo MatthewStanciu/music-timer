@@ -156,10 +156,20 @@ const Page = () => {
   )
 }
 
-/*Page.getInitialProps = ({ req }) => {
-  fetch((req ? `http://${req.headers.host}` : '') + '/api/spotify').then(res =>
-    res.json()
-  )
-}*/
+Page.getInitialProps = ({ req }) => {
+  const refreshToken = req.url.match('=(.*)')[1]
+
+  fetch((req ? `http://${req.headers.host}` : '') + '/api/spotify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ refreshToken: refreshToken })
+  })
+    .then(r => console.log('success'))
+    .catch(err => console.log(err))
+
+  return {}
+}
 
 export default Page

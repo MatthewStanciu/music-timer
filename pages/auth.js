@@ -13,7 +13,7 @@ export default class extends React.Component {
     data.code = code
 
     const getRefreshToken = async () => {
-      let tokenPromise = new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
         axios({
           method: 'POST',
           url: `https://accounts.spotify.com/api/token`,
@@ -38,7 +38,6 @@ export default class extends React.Component {
           })
           .catch(err => console.log(err))
       })
-      return tokenPromise
     }
 
     const refreshToken = await getRefreshToken()
