@@ -32,8 +32,6 @@ export default class extends React.Component {
           }
         })
           .then(response => {
-            //console.log(`access token: ${response.data.access_token}`)
-            // get the access token oUT OF HERE!!!
             resolve(response.data.refresh_token)
           })
           .catch(err => console.log(err))
