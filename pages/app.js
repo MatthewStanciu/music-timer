@@ -9,7 +9,9 @@ const Page = () => {
   const [clock, setClock] = useState([null, null])
 
   const fetchSong = async () => {
-    const req = await fetch('/api/spotify')
+    const url = await process.env.URL
+    console.log(url)
+    const req = await fetch('http://localhost:3000/api/spotify')
     const data = await req.json()
     setSong(data)
   }

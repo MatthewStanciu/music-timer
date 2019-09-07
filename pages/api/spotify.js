@@ -21,7 +21,7 @@ export default async (req, res) => {
   if (req.method === 'POST') spotify.setRefreshToken(req.body.refresh_token)
 
   request({
-    url: 'https://api.spotify.com/v1/me/player/currently-playing?market=US',
+    url: 'https://api.spotify.com/v1/me/player/currently-playing',
     headers: {
       Accept: `application/json`,
       'Content-Type': 'application/json',

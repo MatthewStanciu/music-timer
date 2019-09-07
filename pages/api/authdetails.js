@@ -7,7 +7,7 @@ const loginUrl =
     response_type: 'code',
     client_id: process.env.CLIENT_ID,
     scope: 'user-read-private user-read-email',
-    redirect_uri: 'http://localhost:3000/auth'
+    redirect_uri: 'https://timer-now-playing.matthewstanciu.now.sh/auth'
   })
 
 export default (req, res) => {

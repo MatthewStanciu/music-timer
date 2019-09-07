@@ -1,3 +1,4 @@
 .env
+.env.build
 .next
 package-lock.json

@@ -27,7 +27,7 @@ Auth.getInitialProps = async ({ req, res }) => {
           'Content-Type': 'application/x-www-form-urlencoded',
           Authorization:
             'Basic ' +
-            new Buffer(`${data.client_id}:${data.client_secret}`).toString(
+            Buffer.from(`${data.client_id}:${data.client_secret}`).toString(
               'base64'
             )
         }
