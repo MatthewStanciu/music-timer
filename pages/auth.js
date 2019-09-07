@@ -12,31 +12,39 @@ export default class extends React.Component {
     const code = req.url.match('=(.*)')[1]
     data.code = code
 
-    axios({
-      method: 'POST',
-      url: `https://accounts.spotify.com/api/token`,
-      params: {
-        grant_type: 'authorization_code',
-        code: code,
-        redirect_uri: 'http://localhost:3000/auth'
-      },
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization:
-          'Basic ' +
-          new Buffer(`${data.client_id}:${data.client_secret}`).toString(
-            'base64'
-          )
-      }
-    })
-      .then(response => {
-        console.log(`access token: ${response.data.access_token}`)
-        // get the access token oUT OF HERE!!!
+    const getAccessToken = async () => {
+      let tokenPromise = new Promise((resolve, reject) => {
+        axios({
+          method: 'POST',
+          url: `https://accounts.spotify.com/api/token`,
+          params: {
+            grant_type: 'authorization_code',
+            code: code,
+            redirect_uri: 'http://localhost:3000/auth'
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization:
+              'Basic ' +
+              new Buffer(`${data.client_id}:${data.client_secret}`).toString(
+                'base64'
+              )
+          }
+        })
+          .then(response => {
+            //console.log(`access token: ${response.data.access_token}`)
+            // get the access token oUT OF HERE!!!
+            resolve(response.data.access_token)
+          })
+          .catch(err => console.log(err))
       })
-      .catch(err => console.log(err))
+      return tokenPromise
+    }
 
+    const token = await getAccessToken()
+    console.log(token)
     res.writeHead(302, {
-      Location: `http://localhost:3000/app`
+      Location: `http://localhost:3000/app?access_token=${token}`
     })
     res.end()
 
