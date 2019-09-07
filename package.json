@@ -10,8 +10,10 @@
   "author": "MatthewStanciu",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "dotenv": "^8.1.0",
     "emotion-theming": "^10.0.14",
+    "fs": "0.0.1-security",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
     "next": "^9.0.4",
