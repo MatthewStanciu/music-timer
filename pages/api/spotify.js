@@ -1,6 +1,5 @@
 require('dotenv').config()
 import request from 'request-promise'
-import { parse } from 'query-string'
 
 const Spotify = require('spotify-web-api-node')
 const spotify = new Spotify()
