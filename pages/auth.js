@@ -41,8 +41,19 @@ export default class extends React.Component {
     }
 
     const refreshToken = await getRefreshToken()
+
+    fetch((req ? `http://${req.headers.host}` : '') + '/api/spotify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ refresh_token: refreshToken })
+    })
+      .then(r => console.log('success'))
+      .catch(err => console.log(err))
+
     res.writeHead(302, {
-      Location: `http://localhost:3000/app?refresh_token=${refreshToken}`
+      Location: `http://localhost:3000/app`
     })
     res.end()
 

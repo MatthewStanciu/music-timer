@@ -19,7 +19,10 @@ const refreshToken = async () => {
 export default async (req, res) => {
   const accessToken = await refreshToken()
 
-  console.log(res.json())
+  if (req.method === 'POST') {
+    console.log(req.body.refresh_token)
+    spotify.setRefreshToken(req.body.refresh_token)
+  }
 
   request({
     url: 'https://api.spotify.com/v1/me/player/currently-playing?market=US',
