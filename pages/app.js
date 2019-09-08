@@ -3,16 +3,13 @@ import { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
 
 const Page = ({ host }) => {
-  console.log(`HOST: ${host}`)
   const [song, setSong] = useState({})
   const [seconds, setSeconds] = useState(0)
   const [active, setActive] = useState(false)
   const [clock, setClock] = useState([null, null])
 
   const fetchSong = async () => {
-    const url = await process.env.URL
-    console.log(url)
-    const req = await fetch(`http://${host}/api/spotify`, { mode: 'cors' })
+    const req = await fetch(`http://${host}/api/spotify`)
     const data = await req.json()
     console.log(`DATA: ${data}`)
     setSong(data)

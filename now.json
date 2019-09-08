@@ -10,5 +10,11 @@
     "CLIENT_ID": "@client_id",
     "CLIENT_SECRET": "@client_secret",
     "URL": "@url"
-  }
+  },
+  "routes": [
+    {
+      "src": "/api/spotify",
+      "headers": { "Access-Control-Allow-Origin": "*" }
+    }
+  ]
 }
