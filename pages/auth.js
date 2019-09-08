@@ -21,7 +21,7 @@ Auth.getInitialProps = async ({ req, res }) => {
         params: {
           grant_type: 'authorization_code',
           code: code,
-          redirect_uri: 'http://localhost:3000/auth'
+          redirect_uri: 'https://timer-now-playing.matthewstanciu.now.sh/auth'
         },
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -50,7 +50,7 @@ Auth.getInitialProps = async ({ req, res }) => {
   }).catch(err => console.log(err))
 
   res.writeHead(302, {
-    Location: `http://localhost:3000/app`
+    Location: `https://timer-now-playing.matthewstanciu.now.sh/app`
   })
   res.end()
 

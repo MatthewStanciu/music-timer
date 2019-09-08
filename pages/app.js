@@ -11,7 +11,9 @@ const Page = () => {
   const fetchSong = async () => {
     const url = await process.env.URL
     console.log(url)
-    const req = await fetch('http://localhost:3000/api/spotify')
+    const req = await fetch(
+      'https://timer-now-playing.matthewstanciu.now.sh/api/spotify'
+    )
     const data = await req.json()
     setSong(data)
   }
