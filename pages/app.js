@@ -2,7 +2,8 @@ import fetch from 'isomorphic-unfetch'
 import { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
 
-const Page = () => {
+const Page = ({ host }) => {
+  console.log(`HOST: ${host}`)
   const [song, setSong] = useState({})
   const [seconds, setSeconds] = useState(0)
   const [active, setActive] = useState(false)
@@ -11,10 +12,9 @@ const Page = () => {
   const fetchSong = async () => {
     const url = await process.env.URL
     console.log(url)
-    const req = await fetch(
-      'https://timer-now-playing.matthewstanciu.now.sh/api/spotify'
-    )
+    const req = await fetch(`http://${host}/api/spotify`)
     const data = await req.json()
+    console.log(`DATA: ${data}`)
     setSong(data)
   }
   if (isEmpty(song)) fetchSong()
@@ -158,6 +158,10 @@ const Page = () => {
       `}</style>
     </main>
   )
+}
+
+Page.getInitialProps = async ({ req, res }) => {
+  return { host: req.headers.host }
 }
 
 export default Page

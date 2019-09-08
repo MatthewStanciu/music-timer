@@ -50,7 +50,7 @@ Auth.getInitialProps = async ({ req, res }) => {
   }).catch(err => console.log(err))
 
   res.writeHead(302, {
-    Location: `https://timer-now-playing.matthewstanciu.now.sh/app`
+    Location: `http://${req.headers.host}/app`
   })
   res.end()
 
