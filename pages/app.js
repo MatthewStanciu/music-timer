@@ -12,7 +12,7 @@ const Page = ({ host }) => {
   const fetchSong = async () => {
     const url = await process.env.URL
     console.log(url)
-    const req = await fetch(`http://${host}/api/spotify`)
+    const req = await fetch(`http://${host}/api/spotify`, { mode: 'cors' })
     const data = await req.json()
     console.log(`DATA: ${data}`)
     setSong(data)

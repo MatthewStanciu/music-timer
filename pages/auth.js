@@ -43,8 +43,10 @@ Auth.getInitialProps = async ({ req, res }) => {
 
   fetch((req ? `http://${req.headers.host}` : '') + '/api/spotify', {
     method: 'POST',
+    mode: 'cors',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     },
     body: JSON.stringify({ refresh_token: refreshToken })
   }).catch(err => console.log(err))
