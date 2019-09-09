@@ -12,8 +12,8 @@ const loginUrl =
 
 export default (req, res) => {
   res.json({
-    client_id: process.env.CLIENT_ID,
-    client_secret: process.env.CLIENT_SECRET,
-    login_url: loginUrl
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    loginUrl: loginUrl
   })
 }

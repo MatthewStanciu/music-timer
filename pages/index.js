@@ -10,7 +10,7 @@ LoginPage.getInitialProps = async ({ req, res }) => {
   const data = await authDetails.json()
 
   res.writeHead(302, {
-    Location: data.login_url
+    Location: data.loginUrl
   })
   res.end()
 
