@@ -1,2 +1,8 @@
 # timer-now-playing
-Displays a timer alongside the current song playing in Spotify. It's my first ever Next.js project. I plan on using it during [@wl-hackclub](https://github.com/wl-hackclub) meetings. Made with [@lachlanjc](https://github.com/lachlanjc) 💖
+Displays a timer alongside the current song playing in Spotify. The first Next.js project (that I'm aware of) to implement OAuth authentication using only Next.js API Routes. Fontend by [@lachlanjc](https://github.com/lachlanjc) 💖
+
+## To run locally
+1. Download this project
+2. cd into the project in your terminal
+3. npm i
+4. now dev
