@@ -3,6 +3,6 @@ Displays a timer alongside the current song playing in Spotify. The first Next.j
 
 ## To run locally
 1. Download this project
-2. cd into the project in your terminal
+2. cd into the project directory
 3. npm i
 4. now dev
