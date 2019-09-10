@@ -9,9 +9,12 @@ const Page = ({ host }) => {
   const [clock, setClock] = useState([null, null])
 
   const fetchSong = async () => {
-    const req = await fetch(`http://${host}/api/spotify`)
-    const data = await req.json()
+    const spotifyData = await fetch(`https://${host}/api/spotify`)
+    const data = await spotifyData.json()
+    //const data = 'hhh'
     console.log(`DATA: ${data}`)
+    console.log(`NNN: ${JSON.parse(data)}`)
+    console.log(`MMM: ${JSON.stringify(data)}`)
     setSong(data)
   }
   if (isEmpty(song)) fetchSong()
@@ -157,7 +160,7 @@ const Page = ({ host }) => {
   )
 }
 
-Page.getInitialProps = async ({ req, res }) => {
+Page.getInitialProps = async ({ req }) => {
   return { host: req.headers.host }
 }
 

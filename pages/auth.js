@@ -6,7 +6,7 @@ const Auth = () => React.createElement('div')
 
 Auth.getInitialProps = async ({ req, res }) => {
   const authData = await fetch(
-    (req ? `http://${req.headers.host}` : '') + '/api/authdetails'
+    (req ? `https://${req.headers.host}` : '') + '/api/authdetails'
   )
   const data = await authData.json()
 
@@ -41,7 +41,7 @@ Auth.getInitialProps = async ({ req, res }) => {
 
   const refreshToken = await getRefreshToken()
 
-  fetch((req ? `http://${req.headers.host}` : '') + '/api/spotify', {
+  fetch((req ? `https://${req.headers.host}` : '') + '/api/spotify', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ Auth.getInitialProps = async ({ req, res }) => {
   }).catch(err => console.log(err))
 
   res.writeHead(302, {
-    Location: `http://${req.headers.host}/app`
+    Location: `https://${req.headers.host}/app`
   })
   res.end()
 

@@ -1,24 +1,13 @@
 require('dotenv').config()
 import request from 'request-promise'
-
-const Spotify = require('spotify-web-api-node')
-const spotify = new Spotify()
-spotify.setRefreshToken(process.env.REFRESH_TOKEN)
-spotify.setClientId(process.env.CLIENT_ID)
-spotify.setClientSecret(process.env.CLIENT_SECRET)
-
-const exchangeTokens = async () => {
-  return new Promise((res, rej) => {
-    spotify.refreshAccessToken().then(data => {
-      res(data.body['access_token'])
-    })
-  })
-}
+import fetch from 'isomorphic-unfetch'
 
 export default async (req, res) => {
-  const accessToken = await exchangeTokens()
-
-  if (req.method === 'POST') spotify.setRefreshToken(req.body.refresh_token)
+  if (req.method === 'POST') console.log(`nnnNNN?? ${req.body.refresh_token}`)
+  const refreshToken = await req.body.refresh_token
+  const accessToken = await swapTokens(refreshToken)
+  console.log(`REFRESH TOKEN: ${refreshToken}`)
+  console.log(`ACCESS TOKEN: ${accessToken}`)
 
   request({
     url: 'https://api.spotify.com/v1/me/player/currently-playing',
@@ -46,4 +35,26 @@ export default async (req, res) => {
           'https://collegian.com/wp-content/uploads/2017/08/spotify-1759471_1280.jpg'
       })
     })
+}
+
+const swapTokens = async refreshToken => {
+  return new Promise((resolve, reject) => {
+    fetch(`https://accounts.spotify.com/api/token`, {
+      method: 'POST',
+      params: {
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken
+      },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization:
+          'Basic ' +
+          Buffer.from(
+            `${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`
+          ).toString('base64')
+      }
+    }).then(response => {
+      resolve(response.body.access_token)
+    })
+  })
 }
