@@ -6,7 +6,8 @@ const loginUrl =
   querystring.stringify({
     response_type: 'code',
     client_id: process.env.CLIENT_ID,
-    scope: 'user-read-private user-read-email',
+    scope:
+      'user-read-private user-read-email user-read-currently-playing user-read-playback-state',
     redirect_uri: 'https://timer-now-playing.matthewstanciu.now.sh/auth'
   })
 

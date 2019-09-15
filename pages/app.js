@@ -18,6 +18,7 @@ const Page = ({ refreshToken, host }) => {
       body: JSON.stringify({ refresh_token: refreshToken })
     })
     const data = await spotifyData.json()
+    console.log(data)
     setSong(data)
     //if (data.refreshToken === refreshToken) setSong(data)
   }
