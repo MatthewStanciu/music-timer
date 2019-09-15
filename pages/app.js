@@ -12,9 +12,7 @@ const Page = ({ host }) => {
     const spotifyData = await fetch(`https://${host}/api/spotify`)
     const data = await spotifyData.json()
     //const data = 'hhh'
-    console.log(`DATA: ${data}`)
-    console.log(`NNN: ${JSON.parse(data)}`)
-    console.log(`MMM: ${JSON.stringify(data)}`)
+    //console.log(`DATA: ${JSON.parse(data)}`)
     setSong(data)
   }
   if (isEmpty(song)) fetchSong()
