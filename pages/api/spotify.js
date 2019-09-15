@@ -3,7 +3,9 @@ import request from 'request-promise'
 import fetch from 'isomorphic-unfetch'
 
 export default async (req, res) => {
-  if (req.method === 'POST') console.log(`nnnNNN?? ${req.body.refresh_token}`)
+  if (req.method === 'POST') console.log(req)
+  //console.log(req.method)
+  //console.log(req)
   const refreshToken = await req.body.refresh_token
   const accessToken = await swapTokens(refreshToken)
   console.log(`REFRESH TOKEN: ${refreshToken}`)
