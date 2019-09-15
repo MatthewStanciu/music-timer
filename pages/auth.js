@@ -40,12 +40,11 @@ Auth.getInitialProps = async ({ req, res }) => {
   }
 
   const refreshToken = await getRefreshToken()
-
   res.writeHead(302, {
     Location: `https://${req.headers.host}/app?refresh_token=${refreshToken}`
   })
-  res.end()
 
+  res.end()
   return {}
 }
 

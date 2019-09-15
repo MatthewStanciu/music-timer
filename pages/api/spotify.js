@@ -11,7 +11,6 @@ export default async (req, res) => {
   if (req.method === 'POST') {
     spotify.setRefreshToken(req.body.refresh_token)
     const accessToken = await swapTokens()
-    console.log(`access token: ${accessToken}`)
 
     request({
       url: 'https://api.spotify.com/v1/me/player/currently-playing',
