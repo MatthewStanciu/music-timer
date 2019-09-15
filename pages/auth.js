@@ -41,17 +41,6 @@ Auth.getInitialProps = async ({ req, res }) => {
 
   const refreshToken = await getRefreshToken()
 
-  const sendData = await fetch(`https://${req.headers.host}/api/spotify`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ refresh_token: refreshToken })
-  })
-  const content = await sendData.json()
-  console.log(content)
-
   res.writeHead(302, {
     Location: `https://${req.headers.host}/app?refresh_token=${refreshToken}`
   })

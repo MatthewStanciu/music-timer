@@ -9,9 +9,17 @@ const Page = ({ refreshToken, host }) => {
   const [clock, setClock] = useState([null, null])
 
   const fetchSong = async () => {
-    const spotifyData = await fetch(`https://${host}/api/spotify`)
+    const spotifyData = await fetch(`https://${host}/api/spotify`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ refresh_token: refreshToken })
+    })
     const data = await spotifyData.json()
-    if (data.refreshToken === refreshToken) setSong(data)
+    setSong(data)
+    //if (data.refreshToken === refreshToken) setSong(data)
   }
   if (isEmpty(song)) fetchSong()
 
