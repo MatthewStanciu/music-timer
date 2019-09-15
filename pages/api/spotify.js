@@ -1,12 +1,16 @@
 require('dotenv').config()
 const Spotify = require('spotify-web-api-node')
 import request from 'request-promise'
-import fetch from 'isomorphic-unfetch'
-import axios from 'axios'
+
+const spotify = new Spotify()
+spotify.setRefreshToken(process.env.REFRESH_TOKEN)
+spotify.setClientId(process.env.CLIENT_ID)
+spotify.setClientSecret(process.env.CLIENT_SECRET)
 
 export default async (req, res) => {
   if (req.method === 'POST') {
-    const accessToken = await swapTokens(req.body.refresh_token)
+    spotify.setRefreshToken(req.body.refresh_token)
+    const accessToken = await swapTokens()
     console.log(`access token: ${accessToken}`)
 
     request({
@@ -39,33 +43,10 @@ export default async (req, res) => {
   }
 }
 
-/*const swapTokens = async () => {
+const swapTokens = async () => {
   return new Promise((res, rej) => {
     spotify.refreshAccessToken().then(data => {
       res(data.body['access_token'])
-    })
-  })
-}*/
-
-const swapTokens = async refreshToken => {
-  return new Promise((resolve, reject) => {
-    axios({
-      method: 'POST',
-      url: `https://accounts.spotify.com/api/token`,
-      params: {
-        grant_type: 'refresh_token',
-        refresh_token: refreshToken
-      },
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization:
-          'Basic ' +
-          Buffer.from(
-            `${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`
-          ).toString('base64')
-      }
-    }).then(response => {
-      resolve(response.data.access_token)
     })
   })
 }

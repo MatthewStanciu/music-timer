@@ -20,7 +20,6 @@ const Page = ({ refreshToken, host }) => {
     const data = await spotifyData.json()
     console.log(data)
     setSong(data)
-    //if (data.refreshToken === refreshToken) setSong(data)
   }
   if (isEmpty(song)) fetchSong()
 
