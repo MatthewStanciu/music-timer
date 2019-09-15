@@ -2,6 +2,12 @@
 Displays a timer alongside the current song playing in Spotify. The first Next.js project to implement OAuth authentication using only Next.js API Routes. Fontend by [@lachlanjc](https://github.com/lachlanjc) 💖
 
 # FAQ
+## Ummmmm the timer is stuck at 00:00 how do you start the timer
+Double click the number.
+
+## Why is that totally unclear and so stupid?
+Leave me alone
+
 ## Why the hell are you handling authentication this way?
 Because it's fun. And nobody has done it before. And not needing to set up a custom Express server unlocks some of Next.js' best features, which there is currently no way to do if you need to handle OAuth authentication.
 
