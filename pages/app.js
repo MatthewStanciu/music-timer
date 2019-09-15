@@ -11,8 +11,6 @@ const Page = ({ host }) => {
   const fetchSong = async () => {
     const spotifyData = await fetch(`https://${host}/api/spotify`)
     const data = await spotifyData.json()
-    //const data = 'hhh'
-    //console.log(`DATA: ${JSON.parse(data)}`)
     setSong(data)
   }
   if (isEmpty(song)) fetchSong()

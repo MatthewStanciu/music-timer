@@ -40,7 +40,6 @@ Auth.getInitialProps = async ({ req, res }) => {
   }
 
   const refreshToken = await getRefreshToken()
-  //console.log(`refresh: ${refreshToken}`)
 
   const sendData = await fetch(`https://${req.headers.host}/api/spotify`, {
     method: 'POST',
