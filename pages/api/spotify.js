@@ -27,15 +27,17 @@ export default async (req, res) => {
       const title = json['item']['name']
       const artist = json['item']['artists'][0]['name']
       const albumCover = json['item']['album']['images'][0]['url']
+      const refreshToken = spotify.getRefreshToken()
 
-      res.json({ artist, title, albumCover })
+      res.json({ artist, title, albumCover, refreshToken })
     })
     .catch(err => {
       res.json({
         title: 'Not playing',
         artist: 'Not playing',
         albumCover:
-          'https://collegian.com/wp-content/uploads/2017/08/spotify-1759471_1280.jpg'
+          'https://collegian.com/wp-content/uploads/2017/08/spotify-1759471_1280.jpg',
+        refreshToken: spotify.getRefreshToken()
       })
     })
 }

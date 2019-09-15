@@ -53,7 +53,7 @@ Auth.getInitialProps = async ({ req, res }) => {
   console.log(content)
 
   res.writeHead(302, {
-    Location: `https://${req.headers.host}/app`
+    Location: `https://${req.headers.host}/app?refresh_token=${refreshToken}`
   })
   res.end()
 
