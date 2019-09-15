@@ -1,4 +1,5 @@
 {
+  "name": "music-timer",
   "build": {
     "env": {
       "CLIENT_ID": "@client_id",

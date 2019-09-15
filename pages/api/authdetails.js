@@ -8,7 +8,7 @@ const loginUrl =
     client_id: process.env.CLIENT_ID,
     scope:
       'user-read-private user-read-email user-read-currently-playing user-read-playback-state',
-    redirect_uri: 'https://timer-now-playing.matthewstanciu.now.sh/auth'
+    redirect_uri: 'https://music-timer.matthewstanciu.now.sh/auth'
   })
 
 export default (req, res) => {

@@ -21,7 +21,7 @@ Auth.getInitialProps = async ({ req, res }) => {
         params: {
           grant_type: 'authorization_code',
           code: code,
-          redirect_uri: 'https://timer-now-playing.matthewstanciu.now.sh/auth'
+          redirect_uri: 'https://music-timer.matthewstanciu.now.sh/auth'
         },
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
