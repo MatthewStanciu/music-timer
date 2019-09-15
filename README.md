@@ -1,4 +1,4 @@
-# timer-now-playing
+# music-timer
 Displays a timer alongside the current song playing in Spotify. The first Next.js project to implement OAuth authentication using only Next.js API Routes. Fontend by [@lachlanjc](https://github.com/lachlanjc) 💖
 
 # FAQ
